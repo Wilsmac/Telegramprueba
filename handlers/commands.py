@@ -4,6 +4,7 @@ from telegram.ext import ContextTypes
 from database.database import borrar
 from memory.memory import cache
 from utils.config import cargar_config
+from memory.memory import cache
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
@@ -47,3 +48,13 @@ async def reset(update: Update, context: ContextTypes.DEFAULT_TYPE):
         texto += f"{k}: {v}\n"
 
     await update.message.reply_text(texto)
+     
+  async def stats(update, context):
+
+    chat = update.effective_chat.id
+
+    mensajes = len(cache.get(chat, []))
+
+    await update.message.reply_text(
+        f"Mensajes en memoria: {mensajes}"
+    )
