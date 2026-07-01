@@ -58,3 +58,15 @@ async def reset(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         f"Mensajes en memoria: {mensajes}"
     )
+
+  async def about(update, context):
+
+    await update.message.reply_text(
+"""🤖 Nova AI
+
+Versión: 1.0
+
+Bot de Telegram con IA.
+Creado con Python.
+"""
+    )
