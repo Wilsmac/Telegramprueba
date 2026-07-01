@@ -3,23 +3,30 @@ from telegram.ext import ContextTypes
 
 from ai.chat import preguntar
 from memory.memory import obtener
+from database.database import guardar
 
 async def mensaje(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
-    chat = update.effective_chat.id
+    chat=update.effective_chat.id
 
-    historial = obtener(chat)
+    historial=obtener(chat)
+
+    texto=update.message.text
 
     historial.append({
         "role":"user",
-        "content":update.message.text
+        "content":texto
     })
 
-    respuesta = preguntar(historial)
+    guardar(chat,"user",texto)
+
+    respuesta=preguntar(historial)
 
     historial.append({
         "role":"assistant",
         "content":respuesta
     })
+
+    guardar(chat,"assistant",respuesta)
 
     await update.message.reply_text(respuesta)
