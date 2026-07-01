@@ -6,7 +6,7 @@ filters
 )
 
 from handlers.messages import mensaje
-from handlers.commands import start, help, reset, ping
+from handlers.commands import start, help, reset, ping, config
 from config import TOKEN
 from handlers.images import imagen
 
