@@ -24,6 +24,13 @@ app.add_handler(
     )
 )
 
+app.add_handler(
+    MessageHandler(
+        filters.PHOTO,
+        imagen
+    )
+)
+
 print("Bot iniciado")
 
 app.run_polling()
