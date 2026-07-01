@@ -8,6 +8,7 @@ filters
 from handlers.messages import mensaje
 from handlers.commands import start, help, reset, ping
 from config import TOKEN
+from handlers.images import imagen
 
 app=Application.builder().token(TOKEN).build()
 
