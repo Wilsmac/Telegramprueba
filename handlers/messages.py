@@ -1,5 +1,6 @@
 from telegram import Update
 from telegram.ext import ContextTypes
+from utils.logger import logger
 
 from ai.chat import preguntar
 from memory.memory import obtener
@@ -20,7 +21,17 @@ async def mensaje(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     guardar(chat,"user",texto)
 
-    respuesta=preguntar(historial)
+    try:
+    respuesta = preguntar(historial)
+
+except Exception as e:
+    logger.exception(e)
+
+    await update.message.reply_text(
+        "❌ Ocurrió un error interno."
+    )
+
+    return
 
     historial.append({
         "role":"assistant",
