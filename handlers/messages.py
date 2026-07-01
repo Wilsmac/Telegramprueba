@@ -7,7 +7,10 @@ from memory.memory import obtener
 from database.database import guardar
 
 async def mensaje(update: Update, context: ContextTypes.DEFAULT_TYPE):
-
+   
+    if not update.message or not update.message.text:
+    return
+    
     chat=update.effective_chat.id
 
     historial=obtener(chat)
