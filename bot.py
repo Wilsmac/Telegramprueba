@@ -9,6 +9,7 @@ from handlers.messages import mensaje
 from handlers.commands import start, help, reset, ping, config, stats, about
 from config import TOKEN
 from handlers.images import imagen
+from utils.logger import logger
 
 app=Application.builder().token(TOKEN).build()
 
@@ -34,6 +35,12 @@ app.add_handler(
     )
 )
 
+
+async def error_handler(update, context):
+
+    logger.exception(context.error)
+
+app.add_error_handler(error_handler)
 print("Bot iniciado")
 
 app.run_polling()
