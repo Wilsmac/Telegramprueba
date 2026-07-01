@@ -1,5 +1,4 @@
 from database.database import cargar
-from memory.memory import cache
 
 MAX_HISTORY = 20
 
@@ -23,15 +22,5 @@ def agregar(chat_id, role, content):
 
     if len(historial) > MAX_HISTORY:
         historial.pop(0)
-    
-async def stats(update, context):
-
-    chat = update.effective_chat.id
-
-    mensajes = len(cache.get(chat, []))
-
-    await update.message.reply_text(
-        f"Mensajes en memoria: {mensajes}"
-    )
 
     return historial
