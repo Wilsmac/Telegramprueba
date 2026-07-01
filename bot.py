@@ -16,6 +16,7 @@ app.add_handler(CommandHandler("start",start))
 app.add_handler(CommandHandler("help",help))
 app.add_handler(CommandHandler("reset",reset))
 app.add_handler(CommandHandler("ping", ping))
+app.add_handler(CommandHandler("config", config))
 
 app.add_handler(
     MessageHandler(
